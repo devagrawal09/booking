@@ -1,6 +1,7 @@
 {
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
+    "source.addMissingImports": true,
   },
   "editor.formatOnSave": true
 }

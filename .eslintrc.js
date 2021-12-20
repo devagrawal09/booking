@@ -14,6 +14,11 @@ module.exports = {
       files: ['*.svelte'],
       processor: 'svelte3/svelte3',
     },
+    {
+      rules: {
+        'prefer-default-export': 'off',
+      },
+    },
   ],
   plugins: ['@typescript-eslint', 'svelte3'],
   rules: {},

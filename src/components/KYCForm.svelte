@@ -5,32 +5,45 @@
 <h2>Personal Information</h2>
 <FormGroup>
   <Label for="fullName">Full Name</Label>
-  <Input type="text" name="fullName" id="fullName" placeholder="Full Name" />
+  <Input
+    type="text"
+    name="fullName"
+    id="fullName"
+    placeholder="Full Name"
+    required
+  />
 </FormGroup>
 
 <FormGroup>
   <Label for="email">Email</Label>
-  <Input type="email" name="email" id="email" placeholder="Email" />
+  <Input type="email" name="email" id="email" placeholder="Email" required />
 </FormGroup>
 
 <FormGroup>
   <Label for="dateOfBirth">Date of Birth</Label>
-  <Input type="date" name="dateOfBirth" id="dateOfBirth" />
+  <Input type="date" name="dateOfBirth" id="dateOfBirth" required />
 </FormGroup>
 
 <FormGroup>
-  <Label for="phoneNumber">Phone Number</Label>
+  <Label for="phone">Phone Number</Label>
   <Input
     type="tel"
-    name="phoneNumber"
-    id="phoneNumber"
+    name="phone"
+    id="phone"
     placeholder="Phone Number"
+    required
   />
 </FormGroup>
 
 <FormGroup>
   <Label for="address">Address</Label>
-  <Input type="text" name="address" id="address" placeholder="Address" />
+  <Input
+    type="text"
+    name="address"
+    id="address"
+    placeholder="Address"
+    required
+  />
 </FormGroup>
 
 <FormGroup>
@@ -41,6 +54,7 @@
     value="student"
     label="Student"
     id="profession-student"
+    required
   />
   <Input
     type="radio"
@@ -48,6 +62,7 @@
     value="business"
     label="Business"
     id="profession-business"
+    required
   />
   <Input
     type="radio"
@@ -55,6 +70,7 @@
     value="service"
     label="Service"
     id="profession-service"
+    required
   />
 </FormGroup>
 
@@ -73,6 +89,7 @@
     value="business"
     label="Business"
     id="purpose-business"
+    required
   />
   <Input
     type="radio"
@@ -80,6 +97,7 @@
     value="educational"
     label="Educational"
     id="purpose-educational"
+    required
   />
   <Input
     type="radio"
@@ -87,5 +105,6 @@
     value="other"
     label="Other"
     id="purpose-other"
+    required
   />
 </FormGroup>
