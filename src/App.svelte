@@ -29,13 +29,13 @@
 </script>
 
 <main>
-  <Container>
+  <Container fluid>
     <Form on:submit={onSubmit}>
       <Row>
-        <Col xs={6}>
+        <Col md={6}>
           <BookingForm />
         </Col>
-        <Col xs={6}>
+        <Col md={6}>
           <KycForm />
         </Col>
       </Row>
@@ -45,17 +45,3 @@
     </Form>
   </Container>
 </main>
-
-<style>
-  main {
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
-  }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  }
-</style>
