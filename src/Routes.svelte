@@ -3,7 +3,7 @@
   import type { Route } from 'svelte-router-spa/types/components/router'
   import Dashboard from './pages/admin/Dashboard.svelte'
   import Login from './pages/admin/Login.svelte'
-  import Form from './pages/form/Form.svelte'
+  import Landing from './pages/form/Landing.svelte'
 
   const loggedInGuard = (invert?: boolean) => () => {
     const username = localStorage.getItem('username')
@@ -15,7 +15,7 @@
   const routes: Route[] = [
     {
       name: '/',
-      component: Form,
+      component: Landing,
     },
     {
       name: 'login',
