@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Container } from 'sveltestrap'
-  import Routes from './routes.svelte'
+  import Routes from './Routes.svelte'
 </script>
 
 <main>
