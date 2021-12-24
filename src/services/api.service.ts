@@ -22,7 +22,7 @@ export const ApiService = {
   viewBookings: (username: string, password: string): Promise<Booking[]> =>
     myFetch(`${API_URL}/bookings`, {
       headers: new Headers({
-        "Authorization": `Basic ${Buffer.from(`${username}:${password}`, `base64`)}`
+        "Authorization": `Basic ${btoa(`${username}:${password}`)}`
       }),
     })
 }

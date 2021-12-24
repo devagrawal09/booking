@@ -1,10 +1,10 @@
 <script lang="ts">
   import { Container } from 'sveltestrap'
-  import Form from './pages/form/Form.svelte'
+  import Routes from './routes.svelte'
 </script>
 
 <main>
   <Container fluid>
-    <Form />
+    <Routes />
   </Container>
 </main>

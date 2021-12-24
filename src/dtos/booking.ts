@@ -3,8 +3,9 @@ import type { Vehicle } from "./vehicle";
 
 export interface Booking {
   id: number;
-  startDate: Date;
-  endDate: Date;
+  type: string;
+  startDate: string;
+  endDate: string;
   vehicle: Vehicle;
   customer: Customer;
 }
