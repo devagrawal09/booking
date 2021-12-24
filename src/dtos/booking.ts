@@ -9,16 +9,10 @@ export interface Booking {
   customer: Customer;
 }
 
-export interface BookingDto {
-  conflicts: Booking[];
-  price: number;
-  period: string;
-}
-
 export interface BookDto {
   type: string;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   vehicle: number;
   fullName: string;
   email: string;

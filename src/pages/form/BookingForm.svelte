@@ -1,57 +1,36 @@
 <script lang="ts">
-  import {
-    FormGroup,
-    Input,
-    Label,
-    Card,
-    CardHeader,
-    CardTitle,
-    CardBody,
-    Image,
-    Row,
-    Col,
-  } from 'sveltestrap'
-  import type { Vehicle, Booking } from '../dtos'
-  import { ApiService } from '../services/api.service'
+  import { FormGroup, Input, Label, Row, Col, Alert } from 'sveltestrap'
+  import { ApiService } from '../../services/api.service'
   import VehicleCard from './VehicleCard.svelte'
+  import type { VehicleAvailability } from '../../services/vms'
 
-  let bookingType,
-    startDate,
-    endDate,
-    vehicles: Vehicle[] = [],
-    conflicts: Booking[] = null,
+  let bookingType: string,
+    startDate: string,
+    endDate: string,
     loading = false,
     period,
-    price
-  ;(async function () {
-    vehicles = await ApiService.getVehicles()
-  })()
+    price,
+    availability: VehicleAvailability[],
+    error: string
 
   const getAvailability = async ({
     type = bookingType,
     start = startDate,
     end = endDate,
   }) => {
-    if (!type || !start || !end) return null
+    try {
+      error = ''
+      if (!type || !start || !end) return null
 
-    loading = true
-    const dto = await ApiService.getAvailability(type, start, end)
-    conflicts = dto.conflicts
-    price = dto.price
-    period = dto.period
-    loading = false
-    console.log({ conflicts })
-  }
-
-  const isVehicleAvailable = (vehicle: Vehicle) => {
-    if (!conflicts?.length) return true
-    return !conflicts.find((booking) => booking.vehicle.id === vehicle.id)
-  }
-
-  const vehicleConflict = (vehicle: Vehicle) => {
-    const c = conflicts.find((booking) => booking.vehicle.id === vehicle.id)
-    console.log({ c })
-    return c
+      loading = true
+      const dto = await ApiService.getAvailability(type, start, end)
+      availability = dto.availability
+      price = dto.price
+      period = dto.period
+      loading = false
+    } catch (err) {
+      error = err.message
+    }
   }
 
   const onChange = (e: Event) => {
@@ -66,6 +45,12 @@
     getAvailability({ type: bookingType, start: startDate, end: endDate })
   }
 </script>
+
+{#if error}
+  <Alert color="danger">
+    {error}
+  </Alert>
+{/if}
 
 <h2>Booking Information</h2>
 <FormGroup>
@@ -107,9 +92,9 @@
   Period: <strong>{period}</strong> <br />
   <Row>
     <Col>
-      {#if conflicts}
-        {#each vehicles as vehicle}
-          <VehicleCard {vehicle} {conflicts} />
+      {#if availability}
+        {#each availability as vehicleAvailability}
+          <VehicleCard {vehicleAvailability} />
         {/each}
       {:else}
         <p>Input booking time to see available vehicles</p>

@@ -8,13 +8,11 @@
     CardBody,
     Image,
   } from 'sveltestrap'
-  import type { Vehicle, Booking } from '../dtos'
+  import type { VehicleAvailability } from '../../services/vms'
 
-  export let vehicle: Vehicle, conflicts: Booking[]
-  console.log({ vehicle, conflicts })
-  const vehicleConflict = conflicts.find(
-    (booking) => booking.vehicle.id === vehicle.id,
-  )
+  export let vehicleAvailability: VehicleAvailability
+
+  $: vehicle = vehicleAvailability.vehicle
 </script>
 
 <Card>
@@ -27,18 +25,18 @@
           value={vehicle.id.toString()}
           id={vehicle.id.toString()}
           label={vehicle.name}
-          disabled={!!vehicleConflict}
+          disabled={!vehicleAvailability.available}
         />
       </CardTitle>
     </CardHeader>
   </Label>
   <CardBody>
-    {#if vehicleConflict}
+    {#if !vehicleAvailability.available}
       <p class="text-danger">
         Available before
-        {new Date(vehicleConflict.startDate).toLocaleString()}
+        {new Date(vehicleAvailability['availableBefore']).toLocaleString()}
         or after
-        {new Date(vehicleConflict.endDate).toLocaleString()}
+        {new Date(vehicleAvailability['availableAfter']).toLocaleString()}
       </p>
     {:else}
       <p class="text-success">Available</p>
