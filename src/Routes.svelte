@@ -9,7 +9,7 @@
     const username = localStorage.getItem('username')
     const password = localStorage.getItem('password')
 
-    return !!(username && password) || invert
+    return username && password ? !invert : invert
   }
 
   const routes: Route[] = [

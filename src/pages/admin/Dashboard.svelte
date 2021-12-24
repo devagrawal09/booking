@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { Table, Alert } from 'sveltestrap'
+  import { Table, Alert, Button } from 'sveltestrap'
   import type { Booking } from '../../dtos'
   import { ApiService } from '../../services/api.service'
+  import { navigateTo } from 'svelte-router-spa'
 
   let bookings: Booking[],
     error = ''
@@ -17,9 +18,19 @@
       error = e.message
     }
   })()
+
+  const logout = () => {
+    localStorage.removeItem('username')
+    localStorage.removeItem('password')
+    navigateTo('login')
+  }
 </script>
 
 <h1>Bookings</h1>
+
+<div style="float: right;">
+  <Button color="secondary" on:click={logout}>Logout</Button>
+</div>
 
 {#if error}
   <Alert color="danger">
