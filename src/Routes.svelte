@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Router } from 'svelte-router-spa'
   import type { Route } from 'svelte-router-spa/types/components/router'
-  import Dashboard from './pages/admin/Dashboard.svelte'
+  import Dashboard from './pages/admin/Dashboard/Dashboard.svelte'
   import Login from './pages/admin/Login.svelte'
   import Landing from './pages/form/Landing.svelte'
 

@@ -1,4 +1,4 @@
-import type { Booking, Vehicle } from "../dtos";
+import type { Customer, Vehicle } from "../dtos";
 
 export type VehicleAvailability =
   | {
@@ -18,8 +18,15 @@ export interface AvailabilityVM {
   price: number;
 }
 
-export interface BookedVm {
-  booking: Booking;
-  price: number;
+export interface BookingVm {
+  id: number;
+  type: string;
+  startDate: string;
+  endDate: string;
+  vehicle: Vehicle;
+  customer: Customer;
+  reference: string;
+
   period: string;
+  price: number;
 }

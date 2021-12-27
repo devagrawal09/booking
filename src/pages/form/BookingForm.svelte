@@ -1,6 +1,6 @@
 <script lang="ts">
   import { FormGroup, Input, Label, Row, Col, Alert } from 'sveltestrap'
-  import { ApiService } from '../../services/api.service'
+  import { PublicService } from '../../services'
   import VehicleCard from './VehicleCard.svelte'
   import type { VehicleAvailability } from '../../services/vms'
 
@@ -23,13 +23,14 @@
       if (!type || !start || !end) return null
 
       loading = true
-      const dto = await ApiService.getAvailability(type, start, end)
+      const dto = await PublicService.getAvailability(type, start, end)
       availability = dto.availability
       price = dto.price
       period = dto.period
-      loading = false
     } catch (err) {
       error = err.message
+    } finally {
+      loading = false
     }
   }
 
@@ -101,6 +102,4 @@
       {/if}
     </Col>
   </Row>
-{:else}
-  Input booking type and times to see price and available vehicles
 {/if}

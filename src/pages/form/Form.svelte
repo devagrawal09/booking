@@ -3,11 +3,11 @@
   import BookingForm from './BookingForm.svelte'
   import KycForm from './KYCForm.svelte'
   import type { BookDto } from '../../dtos'
-  import type { BookedVm } from '../../services/vms'
-  import { ApiService } from '../../services/api.service'
+  import type { BookingVm } from '../../services/vms'
+  import { PublicService } from '../../services'
   import Success from './Success.svelte'
 
-  let booked: BookedVm, booking: boolean, error: string
+  let booked: BookingVm, booking: boolean, error: string
 
   const onSubmit = async (e: SubmitEvent) => {
     if (booking) return
@@ -30,7 +30,7 @@
         purpose: form.purpose.value,
       }
 
-      booked = await ApiService.book(dto)
+      booked = await PublicService.book(dto)
     } catch (err) {
       error = err.message
     } finally {
@@ -46,7 +46,7 @@
 {/if}
 
 {#if booked}
-  <Success result={booked} />
+  <Success booking={booked} />
 {:else}
   <Form on:submit={onSubmit}>
     <Row>

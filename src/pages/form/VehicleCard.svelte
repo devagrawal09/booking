@@ -26,21 +26,25 @@
           id={vehicle.id.toString()}
           label={vehicle.name}
           disabled={!vehicleAvailability.available}
+          required
         />
       </CardTitle>
     </CardHeader>
   </Label>
   <CardBody>
-    {#if !vehicleAvailability.available}
-      <p class="text-danger">
-        Available before
-        {new Date(vehicleAvailability['availableBefore']).toLocaleString()}
-        or after
-        {new Date(vehicleAvailability['availableAfter']).toLocaleString()}
-      </p>
-    {:else}
-      <p class="text-success">Available</p>
-    {/if}
+    <p>
+      {vehicle.plate}<br />
+      {#if !vehicleAvailability.available}
+        <span class="text-danger">
+          Available before
+          {new Date(vehicleAvailability['availableBefore']).toLocaleString()}
+          or after
+          {new Date(vehicleAvailability['availableAfter']).toLocaleString()}
+        </span>
+      {:else}
+        <span class="text-success">Available</span>
+      {/if}
+    </p>
     <Image src={vehicle.image} fluid alt={vehicle.name} />
   </CardBody>
 </Card>

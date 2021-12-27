@@ -1,4 +1,3 @@
-import type { Booking } from "./booking";
 
 export interface Customer {
   id: number;
@@ -8,5 +7,4 @@ export interface Customer {
   address: string;
   profession: string;
   purpose: string;
-  booking: Booking;
 }
