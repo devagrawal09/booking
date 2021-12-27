@@ -54,8 +54,6 @@
     toggleCancelConfirmation()
     bookings$ = adminService.viewBookings()
   }
-
-  $: console.log({ bookingToChange })
 </script>
 
 <h1>Bookings</h1>
